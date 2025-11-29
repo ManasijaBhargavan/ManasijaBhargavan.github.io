@@ -1,14 +1,461 @@
-<!DOCTYPE html>
-    <html>
-    <head>
-    <title>My Website</title>
-    </head>
-    <body>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Personal website — bio, resume, projects, experience, positions" />
+  <title>Your Name — Portfolio</title>
 
-    <h1>Hi there, this is Manasija Bhargavan</h1>
-    <p>I'm a second-year Computer Engineering Major at UCSB. I have experience in C/C++, Java, Python, and Javascript.</p>
-    <p>I'm interested in Computer architecture, embedded systems, and neural networks</p>
-    <p>Check out this guy too: <a href="https://anthony9975.github.io/">Anthony Ma</a></p>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#151f2e;
+      --muted:#9aa4b2;
+      --accent:#6ee7b7;
+      --text:#e6eef6;
+      --border:rgba(255,255,255,0.08);
+      --radius:12px;
+      color-scheme: dark;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;background:linear-gradient(180deg,#071226 0%,var(--bg) 100%);color:var(--text)}
+    a{color:var(--accent);text-decoration:none;transition:opacity 0.2s}
+    a:hover{opacity:0.8}
+
+    header{backdrop-filter:blur(12px);background:rgba(15,23,36,0.8);position:sticky;top:0;z-index:100;border-bottom:1px solid var(--border)}
+    .container{max-width:1100px;margin:0 auto;padding:0 28px}
+
+    nav{display:flex;align-items:center;gap:18px;padding:20px 0}
+    .brand{font-weight:700;font-size:18px;color:var(--text)}
+    .nav-links{margin-left:auto;display:flex;gap:4px;align-items:center}
+    .nav-links a{padding:10px 16px;border-radius:8px;color:var(--muted);transition:all 0.2s}
+    .nav-links a:hover{color:var(--text);background:rgba(255,255,255,0.05)}
+    .nav-links a.active{background:rgba(110,231,183,0.1);color:var(--accent)}
+
+    .mobile-toggle{display:none;padding:8px 12px;background:transparent;border:1px solid var(--border);border-radius:8px;color:var(--text);cursor:pointer;font-size:18px}
+    @media (max-width:768px){
+      .nav-links{display:none}
+      .mobile-toggle{display:inline-flex;margin-left:auto}
+      .mobile-menu{display:none;position:absolute;right:28px;top:70px;background:var(--card);padding:8px;border-radius:12px;border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+      .mobile-menu.show{display:block}
+      .mobile-menu a{display:block;padding:12px 16px;border-radius:8px;color:var(--muted)}
+      .mobile-menu a:hover{background:rgba(255,255,255,0.05);color:var(--text)}
+    }
+
+    main{padding:60px 0 80px}
+
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:start}
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .right-hero{order:-1}
+    }
+
+    .card{background:var(--card);padding:28px;border-radius:var(--radius);border:1px solid var(--border);box-shadow:0 4px 24px rgba(0,0,0,0.2)}
+    h1{font-size:32px;font-weight:700;line-height:1.2;margin-bottom:12px}
+    h2{font-size:26px;font-weight:700;margin-bottom:12px}
+    h3{font-size:20px;font-weight:600;margin-bottom:8px}
+    p.lead{color:var(--muted);margin-bottom:20px;font-size:18px;line-height:1.6}
+    p{line-height:1.6;margin-bottom:16px}
+
+    .actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:8px;background:rgba(255,255,255,0.05);border:1px solid var(--border);cursor:pointer;font-size:15px;font-weight:500;color:var(--text);transition:all 0.2s}
+    .btn:hover{background:rgba(255,255,255,0.08);transform:translateY(-1px)}
+    .btn.primary{background:linear-gradient(135deg,rgba(110,231,183,0.15),rgba(110,231,183,0.08));border:1px solid rgba(110,231,183,0.3);color:var(--accent)}
+    .btn.primary:hover{background:linear-gradient(135deg,rgba(110,231,183,0.2),rgba(110,231,183,0.12))}
+
+    .socials{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+    .socials a{padding:10px 16px;border-radius:8px;font-size:14px;background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--muted)}
+    .socials a:hover{background:rgba(255,255,255,0.08);color:var(--text)}
+
+    section{margin-top:32px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:900px){.grid-3{grid-template-columns:1fr}}
+
+    .item{padding:20px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid var(--border)}
+    .muted{color:var(--muted);font-size:14px;line-height:1.6}
+
+    footer{padding:32px 0;color:var(--muted);border-top:1px solid var(--border);margin-top:60px}
+
+    .pill{display:inline-block;padding:6px 12px;border-radius:20px;background:rgba(110,231,183,0.1);color:var(--accent);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px}
+
+    .subpage{display:none}
+    .subpage.active{display:block;animation:fadeIn 0.3s}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+    .project-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    @media(max-width:900px){.project-list{grid-template-columns:1fr}}
+
+    .profile-img{width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,rgba(110,231,183,0.2),rgba(110,231,183,0.05));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:48px;color:var(--accent);border:3px solid var(--border)}
+
+    ul{margin-left:20px;line-height:1.8}
+    ul li{margin-bottom:8px}
+
+    input,textarea{width:100%;padding:12px 16px;margin-top:8px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,0.03);color:var(--text);font-family:inherit;font-size:15px;transition:all 0.2s}
+    input:focus,textarea:focus{outline:none;border-color:var(--accent);background:rgba(255,255,255,0.05)}
+    label{display:block;margin-bottom:16px;font-weight:500}
+
+    code{background:rgba(110,231,183,0.1);padding:2px 6px;border-radius:4px;font-size:13px;color:var(--accent)}
+
+    .job-header{display:flex;justify-content:space-between;gap:16px;align-items:start;margin-bottom:12px;flex-wrap:wrap}
+    .job-title{font-weight:600;font-size:16px}
+    .job-meta{color:var(--muted);font-size:14px;margin-top:4px}
+
+    @media(max-width:600px){
+      .container{padding:0 20px}
+      h1{font-size:26px}
+      h2{font-size:22px}
+      .actions{flex-direction:column;width:100%}
+      .actions .btn{width:100%;justify-content:center}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand">
+          <a href="#home" style="color:inherit">MB</a>
+        </div>
+
+        <div class="nav-links" id="navLinks">
+          <a href="#home" data-route="home" class="active">Home</a>
+          <a href="#experience" data-route="experience">Experience</a>
+          <a href="#projects" data-route="projects">Projects</a>
+          <a href="#positions" data-route="positions">Leadership</a>
+          <a href="#contact" data-route="contact">Contact</a>
+        </div>
+
+        
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HOME -->
+    <section id="home" class="subpage active">
+      <div class="hero">
+        <div>
+          <div class="card">
+            <h1>Manasija Bhargavan</h1>
+            <p class="lead">Software Engineer & Systems Architect — building reliable, scalable solutions.</p>
+
+            <p class="muted">Computer engineering graduate with expertise in systems design, embedded software, and full-stack development. Passionate about clean code, performance optimization, and shipping production-ready applications.</p>
+
+            <div class="actions">
+              <a href="#" class="btn primary" onclick="downloadResume(event)">⬇️ Download Resume</a>
+              <a href="#projects" class="btn">View Projects</a>
+            </div>
+
+            <div class="socials">
+              <a href="mailto:manasija.bhargavan@gmail.com" title="Email">✉️ manasija.bhargavan@gmail.com</a>
+              <a href="https://github.com/ManasijaBhargavan" title="GitHub" target="_blank">🐙 GitHub</a>
+              <a href="https://www.linkedin.com/in/manasija-bhargavan-9b7798292e" title="LinkedIn" target="_blank">🔗 LinkedIn</a>
+            </div>
+          </div>
+
+          <section style="margin-top:24px">
+            <div class="grid-3">
+              <div class="item">
+                <div class="pill">Location</div>
+                <div style="height:12px"></div>
+                <div class="muted">San Francisco, CA</div>
+              </div>
+
+              <div class="item">
+                <div class="pill">Availability</div>
+                <div style="height:12px"></div>
+                <div class="muted">Open to opportunities<br><strong>Available June 2026</strong></div>
+              </div>
+
+              <div class="item">
+                <div class="pill">Skills</div>
+                <div style="height:12px"></div>
+                <div class="muted">C, C++, Python, React, Embedded Linux, PCB Design</div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <aside class="right-hero">
+          <div class="card">
+            <div style="display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center">
+              <div class="profile-img">MB</div>
+              <div class="muted">Systems-focused engineer with a passion for building performant, reliable software.</div>
+              <div style="display:flex;gap:12px;width:100%">
+                <a class="btn" href="#contact" style="flex:1;justify-content:center">Contact</a>
+                <a class="btn" href="#positions" style="flex:1;justify-content:center">Leadership</a>
+              </div>
+            </div>
+          </div>
+
+          <div style="height:20px"></div>
+
+          <div class="card">
+            <h3>Highlights</h3>
+            <ul class="muted" style="margin-top:12px">
+              <li>Built end-to-end telemetry platform for EV testbed</li>
+              <li>Led 5-person team delivering production firmware</li>
+              <li>Active open-source contributor</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="subpage">
+      <div class="card">
+        <h2>Experience</h2>
+        <p class="muted">Professional work experience and internships.</p>
+
+        <div style="margin-top:24px">
+          <div class="item" style="margin-bottom:16px">
+            <div class="job-header">
+              <div>
+                <div class="job-title">Software Engineer Intern — TechCorp</div>
+                <div class="job-meta">June 2024 — August 2024 • San Francisco, CA</div>
+              </div>
+              <div class="pill" style="background:rgba(255,255,255,0.05);color:var(--muted)">Remote</div>
+            </div>
+            <ul class="muted">
+              <li>Optimized telemetry ingestion service in Go, reducing CPU usage by 28%</li>
+              <li>Designed and shipped A/B test framework for firmware update scheduling</li>
+              <li>Collaborated with cross-functional teams on production deployment pipelines</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <div class="job-header">
+              <div>
+                <div class="job-title">Research Assistant — University Lab</div>
+                <div class="job-meta">January 2023 — May 2024 • University Campus</div>
+              </div>
+              <div class="pill" style="background:rgba(255,255,255,0.05);color:var(--muted)">On-site</div>
+            </div>
+            <ul class="muted">
+              <li>Developed embedded Linux drivers for custom sensor hardware</li>
+              <li>Implemented real-time data processing pipeline in C++</li>
+              <li>Co-authored research paper on low-power sensing systems</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="subpage">
+      <div class="card">
+        <h2>Projects</h2>
+        <p class="muted">Selected personal and academic projects showcasing technical skills.</p>
+
+        <div style="margin-top:24px" class="project-list">
+          <div class="item">
+            <div class="job-title">Distributed Task Scheduler</div>
+            <div class="muted" style="margin:8px 0">High-performance task queue with distributed worker coordination and fault tolerance.</div>
+            <div class="muted"><strong>Tech:</strong> C++, Redis, Docker</div>
+            <div style="display:flex;gap:8px;margin-top:16px">
+              <a class="btn" href="https://github.com/johndoe/scheduler" target="_blank">View Code</a>
+              <a class="btn" href="#" onclick="alert('Demo link here');return false">Live Demo</a>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="job-title">Real-Time System Monitor</div>
+            <div class="muted" style="margin:8px 0">Web dashboard for monitoring system metrics with sub-second latency using WebSockets.</div>
+            <div class="muted"><strong>Tech:</strong> React, Node.js, WebSocket</div>
+            <div style="display:flex;gap:8px;margin-top:16px">
+              <a class="btn" href="https://github.com/johndoe/monitor" target="_blank">View Code</a>
+              <a class="btn" href="#" onclick="alert('Demo link here');return false">Live Demo</a>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="job-title">IoT Weather Station</div>
+            <div class="muted" style="margin:8px 0">Battery-powered weather station with custom PCB, cloud logging, and mobile app.</div>
+            <div class="muted"><strong>Tech:</strong> C, ESP32, Python, Flutter</div>
+            <div style="display:flex;gap:8px;margin-top:16px">
+              <a class="btn" href="https://github.com/johndoe/weather" target="_blank">View Code</a>
+              <a class="btn" href="#" onclick="alert('Demo link here');return false">Details</a>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="job-title">Compiler for Custom Language</div>
+            <div class="muted" style="margin:8px 0">Full compiler implementation with lexer, parser, semantic analysis, and code generation.</div>
+            <div class="muted"><strong>Tech:</strong> Rust, LLVM</div>
+            <div style="display:flex;gap:8px;margin-top:16px">
+              <a class="btn" href="https://github.com/johndoe/compiler" target="_blank">View Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POSITIONS -->
+    <section id="positions" class="subpage">
+      <div class="card">
+        <h2>Leadership & Positions</h2>
+        <p class="muted">Team leadership roles, club involvement, and community contributions.</p>
+
+        <div style="margin-top:24px">
+          <div class="item" style="margin-bottom:16px">
+            <div class="job-title">Technical Lead — Formula SAE Electric Team</div>
+            <div class="job-meta" style="margin-bottom:12px">September 2023 — Present</div>
+            <div class="muted">Lead electrical systems team of 8 members. Responsible for battery management, motor control, and vehicle telemetry. Coordinate cross-discipline integration and safety compliance for competition-ready electric race car.</div>
+          </div>
+
+          <div class="item" style="margin-bottom:16px">
+            <div class="job-title">President — Robotics Club</div>
+            <div class="job-meta" style="margin-bottom:12px">January 2023 — May 2024</div>
+            <div class="muted">Managed 30+ member organization, organized weekly workshops, and coordinated participation in regional competitions. Grew club membership by 40% through outreach initiatives.</div>
+          </div>
+
+          <div class="item">
+            <div class="job-title">Open Source Contributor</div>
+            <div class="job-meta" style="margin-bottom:12px">2022 — Present</div>
+            <div class="muted">Active contributor to various open-source projects. Contributions include bug fixes, feature implementations, and documentation improvements for tools in the systems programming ecosystem.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="subpage">
+      <div class="card">
+        <h2>Get in Touch</h2>
+        <p class="muted">Interested in working together? Send me a message or reach out via email.</p>
+
+        <div style="display:grid;grid-template-columns:1fr 340px;gap:24px;margin-top:24px">
+          <div>
+            <form id="contactForm">
+              <label>
+                Name
+                <input required name="name" placeholder="Your name" />
+              </label>
+              <label>
+                Email
+                <input required name="email" type="email" placeholder="you@example.com" />
+              </label>
+              <label>
+                Message
+                <textarea required name="message" rows="6" placeholder="Your message..."></textarea>
+              </label>
+              <div style="display:flex;gap:12px">
+                <button class="btn primary" type="submit">Send Message</button>
+                <button class="btn" type="reset">Reset</button>
+              </div>
+            </form>
+
+            <div id="contactResult" class="muted" style="margin-top:16px"></div>
+          </div>
+
+          <aside style="display:grid;gap:16px;height:fit-content">
+            <div class="item">
+              <div style="font-weight:600;margin-bottom:8px">Email</div>
+              <a href="mailto:manasija.bhargavan@gmail.com" class="muted">manasija.bhargavan@gmail.com</a>
+            </div>
+            <div class="item">
+              <div style="font-weight:600;margin-bottom:8px">Location</div>
+              <div class="muted">San Francisco, CA<br>United States</div>
+            </div>
+            <div class="item">
+              <div style="font-weight:600;margin-bottom:8px">Resume</div>
+              <div class="muted">Download my full resume as PDF using the button on the homepage.</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+        <div class="muted">© 2025 Manasija Bhargavan. All rights reserved.</div>
+        <div class="muted">Built with HTML • Easy to customize • Host on GitHub Pages</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Navigation routing
+    const subpages = document.querySelectorAll('.subpage');
+    const navLinks = document.querySelectorAll('[data-route]');
+
+    function setActive(route){
+      subpages.forEach(s => s.classList.remove('active'));
+      const target = document.getElementById(route) || document.getElementById('home');
+      target.classList.add('active');
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('data-route') === route));
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    function handleHash(){
+      const hash = location.hash.replace('#','') || 'home';
+      setActive(hash);
+    }
+
+    window.addEventListener('hashchange', handleHash);
+    window.addEventListener('load', handleHash);
+
+    // Mobile menu
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileMenu.classList.toggle('show');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('show');
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if(!mobileMenu.contains(e.target) && e.target !== mobileToggle) {
+        mobileMenu.classList.remove('show');
+      }
+    });
+
+    // Contact form
+    const form = document.getElementById('contactForm');
+    const result = document.getElementById('contactResult');
+    
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const name = fd.get('name');
+      const email = fd.get('email');
+      const message = fd.get('message');
+
+      // Mailto fallback (replace with actual backend if needed)
+      const subject = encodeURIComponent(`Website Contact from ${name}`);
+      const body = encodeURIComponent(`${message}\n\n---\nFrom: ${name}\nEmail: ${email}`);
+      const mailto = `mailto:manasija.bhargavan@gmail.com?subject=${subject}&body=${body}`;
+      
+      window.location.href = mailto;
+      result.textContent = '✓ Opening your email client...';
+      result.style.color = 'var(--accent)';
+      
+      setTimeout(() => {
+        form.reset();
+        result.textContent = '';
+      }, 3000);
+    });
+
+    // Resume download simulation
+    function downloadResume(e) {
+      e.preventDefault();
+      // In production, link to actual resume.pdf file
+      // alert('In production, this would download your resume.pdf file.\n\nAdd your resume.pdf to the repository root and update the href.');
+      // Uncomment when you have resume.pdf:
+      window.location.href = 'resume.pdf';
+    }
+  </script>
 </body>
 </html>
