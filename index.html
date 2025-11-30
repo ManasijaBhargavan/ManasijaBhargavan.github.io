@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Personal website — bio, resume, projects, experience, positions" />
-  <title>Your Name — Portfolio</title>
+  <title>Manasija Bhargavan Portfolio</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -116,14 +116,34 @@
   <header>
     <div class="container">
       <nav>
-        <div class="brand">
+        <!--<div class="brand">
           <a href="#home" style="color:inherit">MB</a>
-        </div>
+        </div>-->
+        <div style="
+    width: 40px;              /* change to whatever you want (10px is tiny) */
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+">
+<a href="#home" style="color:inherit">
+  <img
+    src="profile-picture.jpg"
+    alt="Profile picture"
+    style="
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;     /* remove inline whitespace/overflow */
+    "
+  />
+  </a>
+</div>
 
         <div class="nav-links" id="navLinks">
           <a href="#home" data-route="home" class="active">Home</a>
           <a href="#experience" data-route="experience">Experience</a>
-          <a href="#projects" data-route="projects">Projects</a>
+          <!--<a href="#projects" data-route="projects">Projects</a>-->
           <a href="#positions" data-route="positions">Leadership</a>
           <a href="#contact" data-route="contact">Contact</a>
         </div>
@@ -140,18 +160,18 @@
         <div>
           <div class="card">
             <h1>Manasija Bhargavan</h1>
-            <p class="lead">Software Engineer & Systems Architect — building reliable, scalable solutions.</p>
+            <p class="lead">Bachelor's in Computer Engineering — UCSB Class of 2028</p>
 
-            <p class="muted">Computer engineering graduate with expertise in systems design, embedded software, and full-stack development. Passionate about clean code, performance optimization, and shipping production-ready applications.</p>
+            <p class="muted">Computer engineering major with expertise in systems design, embedded software, and full-stack development. Passionate about clean code, performance optimization, and shipping production-ready applications.</p>
 
             <div class="actions">
               <a href="#" class="btn primary" onclick="downloadResume(event)">⬇️ Download Resume</a>
-              <a href="#projects" class="btn">View Projects</a>
+              <a href="#experience" class="btn">View Experience</a>
             </div>
 
             <div class="socials">
               <a href="mailto:manasija.bhargavan@gmail.com" title="Email">✉️ manasija.bhargavan@gmail.com</a>
-              <a href="https://github.com/ManasijaBhargavan" title="GitHub" target="_blank">🐙 GitHub</a>
+              <a href="https://github.com/ManasijaBhargavan" title="GitHub" target="_blank">🪾 GitHub</a>
               <a href="https://www.linkedin.com/in/manasija-bhargavan-9b7798292e" title="LinkedIn" target="_blank">🔗 LinkedIn</a>
             </div>
           </div>
@@ -182,11 +202,28 @@
         <aside class="right-hero">
           <div class="card">
             <div style="display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center">
-              <div class="profile-img">MB</div>
+              <div style="
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: inline-block;
+">
+  <img
+    src="profile-picture.jpg"
+    alt="Profile picture"
+    style="
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;     /* remove inline whitespace/overflow */
+    "
+  />
+</div>
               <div class="muted">Systems-focused engineer with a passion for building performant, reliable software.</div>
               <div style="display:flex;gap:12px;width:100%">
-                <a class="btn" href="#contact" style="flex:1;justify-content:center">Contact</a>
-                <a class="btn" href="#positions" style="flex:1;justify-content:center">Leadership</a>
+                <a class="btn" href="#experience" style="flex:1;justify-content:center">Experience</a>
+                <a class="btn" href="#contact" style="flex:1;justify-content:center">Contact Me</a>
               </div>
             </div>
           </div>
@@ -196,9 +233,9 @@
           <div class="card">
             <h3>Highlights</h3>
             <ul class="muted" style="margin-top:12px">
-              <li>Built end-to-end telemetry platform for EV testbed</li>
-              <li>Led 5-person team delivering production firmware</li>
-              <li>Active open-source contributor</li>
+              <li>VP of largest engineering club on campus</li>
+              <li>Leading Optoelectronics project for Biotech startup</li>
+              <li>Professional&Co-curricular Firmware, Software, and Web Dev experience</li>
             </ul>
           </div>
         </aside>
@@ -425,7 +462,7 @@
     <footer>
       <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
         <div class="muted">© 2025 Manasija Bhargavan. All rights reserved.</div>
-        <div class="muted">Built with HTML • Easy to customize • Host on GitHub Pages</div>
+        <div class="muted">Built with HTML • Hosted on GitHub Pages</div>
       </div>
     </footer>
   </main>
